@@ -17,7 +17,7 @@ docker image ls (you shoud see the docker-brat image)
 # run the container (if you want to expose it on 8080 for example)
 docker run -d -p 8080:80 -v /path/to/host/data/:/var/www/brat/data/annotatordata --name=docker-brat docker-brat
 
-Dont forget in /path/to/host/data to copy the three basic config files from brat : 
+Dont forget in /path/to/host/data to copy the three basic config files from brat : https://brat.nlplab.org/configuration.html
 - tools.conf
 - annotation.conf
 - visual.conf
