@@ -34,6 +34,9 @@ RUN sudo chown -R 777 /var/www/brat/work/
 RUN sudo mkdir /var/www/brat/data/annotatordata
 RUN sudo chmod -R 777 /var/www/brat/data/annotatordata/
 
+## COPY BASIC CONFIG INTO THE ANNOTATOR DATA
+RUN cp /var/www/brat/configurations/Universal-Dependencies/* /var/www/brat/data/annotatordata/
+
 ## CONFIGURE APACHE 2 FOR CGI AND DEFAULT BRAT DIR LOCATION
 RUN cat /etc/apache2/httpd.conf | sed "s/\#LoadModule cgi_module modules\/mod_cgi.so/LoadModule cgi_module modules\/mod_cgi.so/g" | sed "s/\/var\/www\/localhost\/htdocs/\/var\/www\/brat\//g"  > /etc/apache2/tmpConf
 RUN cat /etc/apache2/tmpConf | sed '/<Directory "\/var\/www\/brat\/">/,/<\/Directory>/d' | sed 's/DocumentRoot "\/var\/www\/brat\/"/DocumentRoot "\/var\/www\/brat\/" \n <Directory "\/var\/www\/brat\/">\n AllowOverride Options Indexes FileInfo Limit\n Options \+ExecCGI \n Require all granted \n AddType application\/xhtml\+xml \.xhtml \n AddType font\/ttf \.ttf \n AddHandler cgi\-script \.cgi \n <\/Directory>/g' > /etc/apache2/cleanConf
