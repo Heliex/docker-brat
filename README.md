@@ -18,4 +18,8 @@ docker image ls (you shoud see the docker-brat image)
 docker run -d -p 8080:80 -v /path/to/host/data/:/var/www/brat/data/annotatordata -v /path/to/host/cfg:/var/www/brat/data --name=docker-brat docker-brat
 ### Some of basics config are with this repository (in cfg folder)
 
+# basic log & password
+login : trs
+password:  trs
+
 # Have fun !
